@@ -16,28 +16,18 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v4
+      - name: Set Up Node.js
+        uses: actions/setup-node@v4
         with:
-          version: 9
-
-      - name: Install pnpm
-        run: corepack enable && corepack prepare pnpm@latest --activate
-
-      - name: Verify pnpm Installation
-        run: pnpm --version
-
-      - uses: actions/setup-node@v4
-        with:
-            node-version: 20
-            registry-url: https://registry.npmjs.org
-            cache: pnpm
+          node-version: 20
+          cache: npm
 
       - name: Install Dependencies
         run: |
           cd web-app
-          pnpm install --no-frozen-lockfile
+          npm install --legacy-peer-deps
 
       - name: Run Tests with Coverage
         run: |
           cd web-app
-          pnpm test --coverage --coverageReporters=text --coverageReporters=lcov
+          npm test -- --coverage --coverageReporters=text --coverageReporters=lcov
