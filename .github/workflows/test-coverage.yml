@@ -1,0 +1,41 @@
+name: Run Tests & Generate Coverage
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set Up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: "pnpm"
+
+      - name: Install Dependencies
+        run: |
+          cd web-app
+          pnpm install
+
+      - name: Run Tests with Coverage
+        run: |
+          cd web-app
+          pnpm test --coverage --coverageReporters=text --coverageReporters=lcov
+
+      - name: Upload Coverage Report
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./web-app/coverage/lcov.info
+          flags: unittests
+          fail_ci_if_error: true
