@@ -19,17 +19,18 @@ jobs:
       - uses: pnpm/action-setup@v4
         with:
           version: 9
-      - uses: actions/setup-node@v4
-        with:
-            node-version: 20
-            registry-url: https://registry.npmjs.org
-            cache: pnpm
 
       - name: Install pnpm
         run: corepack enable && corepack prepare pnpm@latest --activate
 
       - name: Verify pnpm Installation
         run: pnpm --version
+
+      - uses: actions/setup-node@v4
+        with:
+            node-version: 20
+            registry-url: https://registry.npmjs.org
+            cache: pnpm
 
       - name: Install Dependencies
         run: |
