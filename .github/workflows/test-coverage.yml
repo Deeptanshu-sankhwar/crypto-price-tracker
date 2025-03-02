@@ -20,7 +20,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
+          cache: npm # This ensures caching works ONLY IF package-lock.json exists
+
+      - name: Ensure package-lock.json Exists
+        run: |
+          cd web-app
+          if [ ! -f package-lock.json ]; then
+            npm install --package-lock-only
+          fi
 
       - name: Install Dependencies
         run: |
