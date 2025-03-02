@@ -9,3 +9,10 @@ export type PriceHistoryEntry = {
   priceUsd: string;
   time: number;
 }
+
+export type CryptoContextType = {
+  data: Record<string, CryptoData>;
+  loading: boolean;
+  error: string | null;
+  refresh: () => void;
+}

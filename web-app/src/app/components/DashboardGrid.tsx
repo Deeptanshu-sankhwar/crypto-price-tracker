@@ -1,12 +1,10 @@
 "use client";
 import CryptoCard from "./CryptoCard";
-import { useCryptoData } from "@/hooks/useCryptoData";
 import { CryptoData } from "@/types";
-
-const cryptos = ["litecoin", "chainlink", "polygon", "cosmos", "stellar"];
+import { useCrypto } from "@/context/CryptoContext";
 
 export default function DashboardGrid({ searchTerm }: { searchTerm: string }) {
-  const { data, loading, error, refresh } = useCryptoData(cryptos);
+  const { data, loading, error, refresh } = useCrypto();
 
   const filteredCryptos = Object.values(data)
     .filter((crypto) => {
