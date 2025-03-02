@@ -5,6 +5,12 @@
 
 ![Screenshot 2025-03-02 at 8 00 35 AM](https://github.com/user-attachments/assets/b624d693-6f8b-460d-866f-9f7680bfe665)
 
+![Screenshot 2025-03-02 at 8 01 28 AM](https://github.com/user-attachments/assets/f0901b26-e398-44c3-a510-2e40d0fa92b3)
+
+![Screenshot 2025-03-02 at 8 02 21 AM](https://github.com/user-attachments/assets/20247973-5208-4770-ad03-4e6a3bc868b0)
+
+![Screenshot 2025-03-02 at 8 02 45 AM](https://github.com/user-attachments/assets/162bb602-a6d1-466b-89db-fefb17f80ab6)
+
 ## About  
 Crypto Price Tracker is a **responsive web application** that allows users to **track live cryptocurrency prices** and **analyze historical market trends**. It is built using **Next.js, TypeScript, Tailwind CSS**, and the **CoinCap API** for fetching real-time market data.  
 
