@@ -3,7 +3,7 @@
 **Live App:** [Crypto Price Tracker](https://crypto-price-tracker-nu.vercel.app/)  
 **Documentation:** [Crypto Tracker Docs](https://docscrypto-price-tracker.vercel.app/)  
 
-![Screenshot 2025-03-02 at 7 58 53 AM](https://github.com/user-attachments/assets/2ab393e7-b826-47da-ab1b-2fe2c91d405a)
+![Screenshot 2025-03-02 at 8 00 35 AM](https://github.com/user-attachments/assets/b624d693-6f8b-460d-866f-9f7680bfe665)
 
 ## About  
 Crypto Price Tracker is a **responsive web application** that allows users to **track live cryptocurrency prices** and **analyze historical market trends**. It is built using **Next.js, TypeScript, Tailwind CSS**, and the **CoinCap API** for fetching real-time market data.  
