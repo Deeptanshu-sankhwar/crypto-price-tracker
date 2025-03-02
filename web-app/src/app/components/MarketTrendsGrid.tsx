@@ -32,29 +32,26 @@ export default function MarketTrendsGrid() {
       time:
         selectedTimeframe === "h1"
           ? date.toLocaleString("en-US", {
-              month: "short",
-              day: "numeric",
               hour: "2-digit",
               minute: "2-digit",
               hour12: true,
             })
-          : date.toLocaleDateString("en-US", {
-              month: "short",
-              day: "numeric",
-            }),
+          : date.toLocaleDateString("en-US", { month: "short", day: "numeric" }),
     };
   });
 
   return (
-    <div className="bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700">
-      <h2 className="text-2xl font-bold mb-4 text-white">Price Trends</h2>
+    <div className="bg-gray-800 p-4 sm:p-6 rounded-xl shadow-lg border border-gray-700">
+      <h2 className="text-xl sm:text-2xl font-bold mb-4 text-white text-center sm:text-left">
+        Price Trends
+      </h2>
 
       {/* Crypto Selector */}
-      <div className="flex space-x-4 mb-4">
+      <div className="flex flex-wrap gap-2 justify-center sm:justify-start mb-4">
         {cryptos.map((crypto) => (
           <button
             key={crypto}
-            className={`px-4 py-2 rounded-md text-sm font-semibold ${
+            className={`px-3 sm:px-4 py-2 rounded-md text-sm font-semibold ${
               selectedCrypto === crypto
                 ? "bg-blue-500 text-white"
                 : "bg-gray-700 text-gray-300 hover:bg-gray-600"
@@ -68,11 +65,11 @@ export default function MarketTrendsGrid() {
       </div>
 
       {/* Timeframe Selector */}
-      <div className="flex space-x-4 mb-4">
+      <div className="flex flex-wrap gap-2 justify-center sm:justify-start mb-4">
         {Object.entries(timeframes).map(([key, label]) => (
           <button
             key={key}
-            className={`px-4 py-2 rounded-md text-sm font-semibold ${
+            className={`px-3 sm:px-4 py-2 rounded-md text-sm font-semibold ${
               selectedTimeframe === key
                 ? "bg-green-500 text-white"
                 : "bg-gray-700 text-gray-300 hover:bg-gray-600"
@@ -86,17 +83,19 @@ export default function MarketTrendsGrid() {
       </div>
 
       {/* Refresh Button */}
-      <button
-        onClick={refresh}
-        disabled={loading}
-        className={`mb-4 px-4 py-2 rounded-lg transition ${
-          loading
-            ? "bg-gray-500 text-gray-300 cursor-not-allowed"
-            : "bg-blue-500 text-white hover:bg-blue-600"
-        }`}
-      >
-        {loading ? "Refreshing..." : "Refresh Data"}
-      </button>
+      <div className="flex justify-center sm:justify-start mb-4">
+        <button
+          onClick={refresh}
+          disabled={loading}
+          className={`px-4 py-2 rounded-lg transition ${
+            loading
+              ? "bg-gray-500 text-gray-300 cursor-not-allowed"
+              : "bg-blue-500 text-white hover:bg-blue-600"
+          }`}
+        >
+          {loading ? "Refreshing..." : "Refresh Data"}
+        </button>
+      </div>
 
       {/* Chart with Animation & Loading Skeleton */}
       {loading ? (
@@ -113,10 +112,16 @@ export default function MarketTrendsGrid() {
           <ResponsiveContainer width="100%" height={300}>
             <LineChart
               data={formattedHistory}
-              margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+              margin={{ top: 10, right: 20, left: -10, bottom: 10 }}
             >
               <CartesianGrid strokeDasharray="3 3" stroke="gray" />
-              <XAxis dataKey="time" stroke="white" />
+              <XAxis
+                dataKey="time"
+                stroke="white"
+                tick={{ fontSize: 10 }}
+                angle={-30}
+                textAnchor="end"
+              />
               <YAxis stroke="white" />
               <Tooltip
                 contentStyle={{
@@ -126,13 +131,9 @@ export default function MarketTrendsGrid() {
                   borderRadius: "8px",
                   color: "white",
                 }}
-                labelFormatter={(label) => `📅 ${label}`} // Show date + time in tooltip
-                formatter={(value: number) => [
-                  `💰 $${value.toFixed(2)}`,
-                  "Price",
-                ]}
+                labelFormatter={(label) => `📅 ${label}`}
+                formatter={(value: number) => [`💰 $${value.toFixed(2)}`, "Price"]}
               />
-
               <Line
                 type="monotone"
                 dataKey="priceUsd"
